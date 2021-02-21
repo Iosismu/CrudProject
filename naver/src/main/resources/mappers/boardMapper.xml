@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+      <!-- 게시판 글 작성 -->
+   <insert id="insert">
+	   INSERT INTO board(  
+	   					       TITLE 
+	   					      , CONTENT 
+	   					      ,  WRITER
+	   					       )
+	                 VALUES(    
+	                 		   #{title}
+	                 		  , #{content}
+	                 		  , #{writer}
+	                 		   )
+   
+   </insert>
+   
+   	<select id="list" resultType="kr.co.vo.BoardVO">
+		SELECT   BNO
+			   , TITLE
+			   , WRITER
+			   , REGDATE
+		  FROM board
+		  ORDER BY BNO DESC
+	</select>
+	
+	<select id="read" parameterType="int" resultType="kr.co.vo.BoardVO">
+		SELECT	BNO
+			  , TITLE
+			  , CONTENT
+			  , WRITER
+			  , REGDATE
+		 FROM board
+		 WHERE BNO = #{bno}
+	</select>
+	
+	<update id="update" parameterType="kr.co.vo.BoardVO">
+		UPDATE board
+		   SET TITLE    =   #{title},
+		   	   CONTENT  =   #{content}
+		 WHERE BNO = #{bno} 
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE 
+		  FROM board
+		 WHERE BNO = #{bno}
+	</delete>
+	
+<select id="listPage" resultType="kr.co.vo.BoardVO" parameterType="kr.co.vo.SearchCriteria">
+		SELECT  BNO, 
+		        TITLE, 
+		        CONTENT,
+		        WRITER, 
+		        REGDATE
+		 FROM ( 
+		        SELECT BNO, 
+		               TITLE, 
+		               CONTENT, 
+		               WRITER, 
+		               REGDATE, 
+		               ROW_NUMBER() OVER(ORDER BY BNO DESC) AS RNUM
+		         FROM board
+		         WHERE 1=1 
+		         	<include refid="search"></include>
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY BNO DESC
+	</select>
+	
+	<select id="listCount" parameterType="kr.co.vo.SearchCriteria" resultType="int">
+		SELECT COUNT(BNO)
+		   FROM board
+		   WHERE 1=1
+		<include refid="search"></include>	
+		   AND BNO > 0
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND TITLE LIKE CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 'c'.toString()">AND CONTENT LIKE CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 'w'.toString()">AND WRITER LIKE CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 'tc'.toString()">AND (TITLE LIKE CONCAT('%',#{keyword},'%')) or (CONTENT LIKE CONCAT('%',#{keyword},'%'))</if>
+		</if>
+	</sql>
+</mapper>

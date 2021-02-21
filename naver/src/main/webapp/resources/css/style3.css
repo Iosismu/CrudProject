@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+body{
+    background-color:#F4F7F7 ;
+    font-family: 'Montserrat', sans-serif;
+}
+
+nav {
+    background-color:#24252a;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    list-style-type: none;
+}
+#navibar {
+    width: 100%;
+    height: 30px;
+    position: fixed; /*-- nav바 고정 --*/
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 999; /*-- 순서를 강력하게 --*/
+}
+
+img { 
+    float: left;  
+    background-color: #24252a;
+    height: 76px;
+    
+}
+
+li  {
+    font-family: 'Montserrat', sans-serif;
+    float: left;        /*-- 줄바꿈 없애기 --*/
+    display: block;  
+    padding: 15px;    
+    color: gray;   
+    font-weight: bold;  /*-- 글 폰트 변경 --*/
+    text-decoration: none; 
+    line-height: 30px;
+    font-size: 17px; 
+    
+}
+
+h2{ margin-top: 2000px;}
+
+a {
+    color: gray;
+    text-decoration: none;
+}
+a:hover {
+    color: white;
+    transition: all 0.3s ease 0s;
+    cursor: poniter;
+    text-decoration: none;
+}
+button{
+    padding: 12px 25px;
+    background-color:gray;
+    border: none;
+    border-radius: 50px;
+    cursor: poniter;
+    transition: all 0.3s ease 0s;
+    font-size: 14px;
+}
+button:hover{
+    background-color: white;
+ }
+#Login{
+    padding-left: 750px; /*-- 로그인 , 회원가입 object안 오른쪽으로 --*/
+}
+.login-form{
+    width: 360px;
+    height: 550px;
+    background-color: #ffffff;
+    padding: 80px 40px;
+    border-radius: 1px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow:  0 0 5px #E3E3E3;   
+}
+.login-form p{
+    text-align: left;
+    margin-bottom: 13px;
+    font-size: 20px;
+}
+.txtb{
+    border-bottom: 2px solid #adadad;
+    position: relative;
+    margin: 30px 0;
+}
+.txtb input{
+    font-size: 15px;
+    color: #333;
+    border: none;
+    width: 100%;
+    outline: none;
+    background: none;
+    padding: 0 5px;
+    height: 40px;
+}
+.txtb span::before{
+    content: attr(data-placeholder);
+    position:absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    z-index: -1;
+    transition: -5s;
+}
+.txtb span::after{
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    transition: .5s;
+    background: linear-gradient(120deg,#3498db,#8e44ad);
+}
+.focus + span::before{
+    top: -5px;
+}
+.focus + span::after{
+    width: 100%;
+}
+.logbtn{
+    display: block;
+    width: 46%;
+    height: 50px;
+    border: none;
+    background-color: #61A8F9;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+    background-size: 200%;
+    cursor: pointer;
+    transition: .5s;
+    outline: none;
+    margin-top: 20px;
+    float: left;
+    
+}
+.logbtn2{
+    
+    margin-right: 100%;
+    display: block;
+    width: 46%;
+    height: 50px;
+    border: none;
+    background-color: #61A8F9;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+    background-size: 200%;
+    cursor: pointer;
+    transition: .5s;
+    outline: none;
+    margin-top: 50px;
+    margin-left: 55%;
+}
+.bottom-text{
+    
+    margin-top: 60px;
+    text-align: center;
+    font-size: 13px;
+}
+.bottom-text a{
+    color: #8CBAFF;
+    text-decoration: underline;
+}
+.chk{
+    font-size: 15px;
+}
+.chk a{
+    color: #8CBAFF;
+    text-decoration: underline;
+    margin-left: 25%;
+    font-size: 15px;
+}
+.login-form hr{
+    margin-top: 20%;
+    height: 0px;
+    background: none;
+}
+.login-form img{
+    align-items: center;
+    width: 370px;
+}
+.login-form .notice{
+        font-size: 10px;
+}
+
+/*
+.container{
+    min-height: 100vh;
+    background-image: linear-gradient(120deg,#3498db,#8e44ad);
+    margin: 0;
+    padding: 0;
+}*/
