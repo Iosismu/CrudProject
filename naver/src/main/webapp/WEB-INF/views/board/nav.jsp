@@ -13,14 +13,14 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#logoutBtn").on("click", function(){
-			location.href="/member/logout";
+			location.href = "/member/logout";
 		})
-
 		$(".regi").on("click", function(){	
 				location.href = "/member/register";				    
 		})
-
-		
+		$(".userDelete").on("click", function(){	
+			location.href = "/member/memberDeleteView";				    
+		})
 	})
 </script>
 
@@ -50,14 +50,15 @@
 			        <button type="button" class="login-button" name="logoutBtn" id="logoutBtn" style="width:auto;">로그아웃</button>
 		       </div>
 		    </c:if>
+		    
         <div class="logbutton">     
 			<c:if test="${member == null }">
 				<div>
 		        <button type="button" class="login-button" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">로그인</button>
-		        </div>	
+		     </div>	
 			</c:if>
 			<c:if test="${member != null }">			
-        		        <div class="updateButton">
+        		  <div class="updateButton">
 			        <button type="button" class="login-button" name="updateBtn" id="updateBtn" style="width:auto; white-space:nowrap;" onclick="document.getElementById('id02').style.display='block'" 
 			        >회원정보수정</button>
 		        </div>
@@ -120,6 +121,8 @@
 
       <div class="container" style="background-color:#f1f1f1">
         <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+        
+        <span class="psw">회원탈퇴를 원하시나요?<a class="userDelete">회원탈퇴</a></span>
       </div>  
     </form>
   </div>

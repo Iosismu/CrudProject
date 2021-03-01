@@ -31,7 +31,7 @@
 	
 	<!-- 회원탈퇴 -->
 	<delete id="memberDelete">
-		DELETE FROM MP_MEMBER
+		DELETE FROM member
 		WHERE USERID = #{userId}
 		  AND USERPASS = #{userPass} 
 	</delete>
